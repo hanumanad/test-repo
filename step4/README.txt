@@ -11,5 +11,5 @@
   To run the Docker compose file execute the below command
   # docker-compose up
 
- Note : Log file of the above executing is also attached
+ Note : Log file of the above executing is also attached File Name = Docker_compose.log
   
