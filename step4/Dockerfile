@@ -14,4 +14,4 @@
  #COPY /tmp/test-repo/install_apache.yaml /etc/ansible/
 
  # Run ansible playbook 
- RUN ansible-playbook /tmp/test-repo/install_apache.yaml -c local
+ RUN ansible-playbook /tmp/test-repo/step4/install_couchdb.yaml -c local
