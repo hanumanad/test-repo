@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local 
+  become: yes
+  tasks:
+  # Install Apache
+  - name: Install Apache
+    apt:  name=apache2 state=present
+  # Copy Sample HTML File
+  - name: Copying sample HTML File
+    copy: src=/tmp/test-repo/test.html dest=/var/www/html
+  # Start Apache HTTPD service
+  - name: Restarting httpd services
+    service: name=apache2 state=restarted
