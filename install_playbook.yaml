@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+  connection: local 
+  become: yes
+  tasks:
+  #Install NodeJS
+  - name: Install NodeJS
+    apt:  name=nodejs state=present
+  #Install NPM
+  - name: Install NPM
+    apt:  name=npm state=present
+  #Install Docker 
+  - name: ensure repository key is installed
+    apt_key:
+        id: "58118E89F3A912897C070ADBF76221572C52609D"
+        keyserver: "hkp://p80.pool.sks-keyservers.net:80"
+        state: present
+  - name: ensure docker registry is available
+    apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-xenial main' state=present
+  - name: Ensure docker and all its dependencies are installed
+    apt: name=docker-engine update_cache=yes
+  - name: Installing Docker compose
+    apt: name=docker-compose state=present
+  # Restart Docker service
+  - name: Restarting Docker service 
+    service: name=docker state=restarted
+  # Install OpenSSL
+  - name: Install OpenSSL
+    apt:  name=openssl state=latest
+  # Install Git
+  - name: Install Git
+    apt:  name=git state=latest
+  # Install Apache
+  - name: Install Apache
+    apt:  name=apache2 state=present
+  # Start Apache HTTPD service
+  - name: Starting httpd services
+    service: name=apache2 state=started
